@@ -1,0 +1,28 @@
+{
+  "builders": [
+    {
+     "boot_command": [
+        "<esc><wait>",
+        "<esc><wait>",
+        "<enter><wait>",
+        "/install/vmlinuz<wait>",
+        " initrd=/install/initrd.gz",
+        " auto-install/enable=true",
+        " debconf/priority=critical",
+        " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg<wait>",
+        " -- <wait>",
+        "<enter><wait>"
+    ],
+    "boot_wait": "10s",
+    "http_directory": "http",
+    "type": "virtualbox-iso",
+    "guest_os_type": "Debian_64",
+    "iso_url": "https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-10.6.0-amd64-netinst.iso",
+    "iso_checksum": "sha256:2af8f43d4a7ab852151a7f630ba596572213e17d3579400b5648eba4cc974ed0",
+    "ssh_username": "elacava",
+    "ssh_password": "packer",
+    "shutdown_command": "echo 'packer' | sudo -S shutdown -P now",
+    "ssh_wait_timeout": "100000s"
+    }
+  ]
+}
